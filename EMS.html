@@ -1,0 +1,245 @@
+<!-- 
+process
+1) create a user registration and login forgot password and change password
+
+2) display employee list and give a button to add employee for that create one form and store in the array of object
+
+3) once add one object to that array display that array this is a employee list in that need to give
+ edit and block option for each object
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Management System</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/EMS.css">
+    
+
+    <style>
+        body {
+            background-color:hsl(0, 6%, 97%);
+        }
+    </style>
+</head>
+<body class="b-class1" id="b-id1">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <a href="#" >Dashboard</a>
+        <a href="#">About</a>
+        <a href="#">Employees Overview</a>
+        <a href="#">Portfolio</a>
+        <a href="#">Reports</a>
+        <a href="#">Departments </a>
+        <a href="#">Designations </a>
+        <a href="#">Reporting Team </a>
+        <a href="#">Analytics</a>
+        <a href="#">Approvels</a>
+        <a href="#">Settings</a>
+        <a href="#">Mass Mails</a>
+        <a href="/login.html">Logout</a>
+        
+    </div>
+    <div class="container">
+
+        <div class="profile-card">
+            <div class="profile-img">
+                <img src="https://th.bing.com/th?id=OIP.tJYl02NAHsRL3fzirIrpKwHaFe&w=290&h=215&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2" alt="Emp img">
+                <p id="user-role">Software Engineer</p>
+            </div>
+            <div class="profile-info">
+                <h3 id="user-name">John Doe</h3>
+                <p id="user-email">Software Engineer</p>
+            </div>
+            <span style="font-size: 24px; margin-left: 80px;">👋</span>  
+        </div>
+
+        <input id="emp-search"  type="text" class="search-input" placeholder="Search Employee">
+
+        <a class="logout" href="/login.html">
+            <i class="fas fa-power-off"></i>  
+            
+        </a>
+    </div>
+
+    <div class="form-group">
+        <label for="department">Department</label>
+        <select id="filter-department" name="department" required>
+            <option value="" >Filter Department</option>
+            <option value="HR">HR</option>
+            <option value="IT">IT</option>
+            <option value="Sales">Sales</option>
+            <option value="Finance">Finance</option>
+        </select>
+    </div>
+
+
+    <button id="add-emp-id" class="add-emp" onclick="toggleForm()">add Employee</button>
+    
+    <div id="emp-table"  class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Sl.No</th>
+                    <th>Full Name</th>
+                    <th>Email</th>
+                    <th>Date of Birth</th>
+                    <th>Gender</th>
+                    <th>Department</th>
+                    <th>Designation</th>
+                    <th>Reporting To</th>
+                    <th>Experience</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td id="id-1">1</td> 
+                    <td id="fullname-1">John Doe</td> 
+                    <td id="email-1">john.doe@example.com</td> 
+                    <td id="dob-1">1990-01-01</td> 
+                    <td id="gender-1">Male</td> 
+                    <td id="department-1">IT</td> 
+                    <td id="designation-1">Software Engineer</td> 
+                    <td id="reporting-to-1">Jane Smith</td> 
+                    <td id="experience-1">5</td> 
+                    <td><a href="#" class="edit-icon" onclick="openUpdateForm(1)"><i class="fas fa-edit" ></i></a>
+                        <a href="#" class="delete-icon"><i class="fas fa-trash-alt"></i></a></td> 
+                </tr>
+    
+            </tbody>
+        </table>
+    </div>
+
+    <button class="add-emp" onclick="togglePopup()">Add Employee</button>
+
+    <div id="popupOverlay" class="popup-overlay" onclick="closePopup(event)">
+        <div id="addEmployeeForm" class="add-employee-form">
+            <button class="close-btn" onclick="togglePopup()">X</button>
+            <h2 class="ef">Add Employee Form</h2>
+            <form onsubmit="handleFormSubmit(event)">
+                <div class="form-group">
+                    <label for="full-name">Full Name</label>
+                    <input type="text" id="full-name" name="full-name" placeholder="Enter full name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Enter email" required>
+                </div>
+                <div class="form-group">
+                    <label for="dob">Date of Birth</label>
+                    <input type="date" id="dob" name="dob" required>
+                </div>
+                <div class="form-group">
+                    <label for="gender">Gender</label>
+                    <select id="gender" name="gender" required>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="department">Department</label>
+                    <select id="department" name="department" required>
+                        <option value="" disabled selected>Select Department</option>
+                        <option value="HR">HR</option>
+                        <option value="IT">IT</option>
+                        <option value="Sales">Sales</option>
+                        <option value="Finance">Finance</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="designation">Designation</label>
+                    <input type="text" id="designation" name="designation" placeholder="Enter designation" required>
+                </div>
+                <div class="form-group">
+                    <label for="reporting-to">Reporting To</label>
+                    <input type="text" id="reporting-to" name="reporting-to" placeholder="Enter reporting manager" required>
+                </div>
+                <div class="form-group">
+                    <label for="experience">Experience (in years)</label>
+                    <input type="number" id="experience" name="experience" placeholder="Enter experience" required>
+                </div>
+                <button type="submit" class="submit-btn">Submit</button>
+            </form>
+        </div>
+    </div>
+
+        <!-- Update Employee Popup Overlay -->
+    <div id="updatePopupOverlay" class="popup-overlay">
+        <div class="popup-content">
+            <button class="close-btn" onclick="toggleUpdateForm()">X</button>
+            <h2>Update Employee Form</h2>
+            <form onsubmit="handleUpdateFormSubmit(event)">
+                <div style="display: none;">
+                    <input type="number" id="index" name="id" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="update-full-name">Full Name</label>
+                    <input type="text" id="update-full-name" name="full-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="update-email">Email</label>
+                    <input type="email" id="update-email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="update-dob">Date of Birth</label>
+                    <input type="date" id="update-dob" name="dob" required>
+                </div>
+                <div class="form-group">
+                    <label for="update-gender">Gender</label>
+                    <select id="update-gender" name="gender" required>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="department">Department</label>
+                    <select id="update-department" name="department" required>
+                        <option value="" disabled selected>Select Department</option>
+                        <option value="HR">HR</option>
+                        <option value="IT">IT</option>
+                        <option value="Sales">Sales</option>
+                        <option value="Finance">Finance</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="update-designation">Designation</label>
+                    <input type="text" id="update-designation" name="designation" required>
+                </div>
+                <div class="form-group">
+                    <label for="update-reporting-to">Reporting To</label>
+                    <input type="text" id="update-reporting-to" name="reporting-to" required>
+                </div>
+                <div class="form-group">
+                    <label for="update-experience">Experience (in years)</label>
+                    <input type="number" id="update-experience" name="experience" required>
+                </div>
+                <!-- <div class="form-group">
+                    <label for="update-experience">Added By</label>
+                    <input type="text" id="update-added-by" name="createdby" required>
+                </div> -->
+                <button type="submit" class="submit-btn">Update</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="deletePopup" class="popup-overlay">
+        <div class="popup">
+            <p>Confirm Delete ?</p>
+            <button id="confirmDelete">Yes</button>
+            <button id="cancelDelete">No</button>
+        </div>
+    </div>
+
+    <script src="/add_emp.js"></script>
+</body>
+</html>
+

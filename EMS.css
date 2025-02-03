@@ -1,0 +1,378 @@
+.sidebar {
+    width: 100px;
+    height: 100vh; /* Full height */
+    overflow-y: auto; /* Enable scrolling */
+    background: #0e015e;
+    position: fixed; /* Fix the sidebar */
+    top: 0;
+    left: 0;
+    padding-top: 20px;
+}
+
+.sidebar a {
+    display: block;
+    padding: 15px;
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    border-bottom: 1px solid #444;
+    
+}
+
+.sidebar a:hover {
+    background: #e7e4e4;
+    color:#0e015e
+}
+
+.container {
+    margin-top: 60px;
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Space between elements */
+}
+
+/* Profile Card */
+.profile-card {
+    margin-left: 110px;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    background: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(10, 1, 107, 0.641);
+    /* max-width: 300px; */
+    width: 300px;
+    border: 1px solid #ddd;
+}
+
+/* Profile Image (Circular) */
+.profile-img img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #0e015e;
+}
+
+.profile-info {
+    margin-left: 15px;
+    max-width: 100%; /* Ensure it doesn't exceed container width */
+    word-wrap: break-word; /* Break the word if it's too long */
+    overflow: hidden; /* Hide anything that overflows */
+}
+
+.profile-info h3 {
+    margin: 0;
+    font-size: 18px;
+    color: #333;
+}
+
+.profile-info p {
+    font-size: 14px;
+    color: #666;
+}
+
+/* Search Input */
+.search-input {
+    margin-left: 50em;
+    padding: 15px;
+    width: 300px;
+    border: 2px solid #0e015e;
+    border-radius: 5px;
+    font-size: 14px;
+    
+}
+
+.logout {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+    margin-left: 350px;
+    position: relative;
+    padding: 8px;
+}
+
+.add-emp {
+    position: absolute;
+    top: 120px;  /* Adjust this value to control vertical positioning */
+    right: 40px;  /* Adjust this value to control horizontal positioning */
+    padding: 10px 20px;
+    background-color: #0e015e;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.add-emp:hover {
+    background-color: #444;
+}
+
+
+.table-container {
+    padding: 10px;
+    width: 90%;
+    max-height: 200px; /* Set height for vertical scrolling */
+    overflow: auto; /* Enable scrolling */
+    margin: 20px 0;
+    position: relative;
+    margin-top: 100px; /* Adjusts the space from the element above */
+    margin-left: 100px;
+}
+
+/* Table styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+    position: relative; /* Keeps the table inside the container */
+}
+
+/* Make the header sticky at the top */
+table thead th {
+    position: sticky;
+    top: 0;
+    background-color:#0e015e;
+    z-index: 1; /* Ensures that the header stays above table body */
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+    white-space: nowrap;
+    color: #ddd;
+}
+
+table th ,tbody td {
+    position: sticky;
+    right: 0;
+    background-color:hsl(240, 13%, 94%);
+
+
+}
+
+.edit-icon{
+    color: rgba(232, 170, 35, 0.852);
+}
+
+.delete-icon{
+    color: rgb(240, 65, 2);
+}
+
+/* Table cell styles */
+table th, table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+    white-space: nowrap; /* Prevents content from breaking onto the next line */
+}
+
+/* Optional: Styling for the header */
+table thead {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+/* Background overlay (for dimming effect) */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Popup form container */
+.add-employee-form {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    width: 400px;
+    height: 500px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
+    overflow-y: auto;
+}
+
+/* When the popup is active */
+.popup-overlay.show {
+    display: flex;
+}
+
+.add-employee-form.show {
+    transform: scale(1);
+    opacity: 1;
+}
+
+/* Close button */
+.close-btn {
+    background:rgb(50, 50, 105);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 5px;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    position: fixed;
+}
+
+.close-btn:hover {
+    background: rgb(0, 15, 109);
+}
+
+
+
+form {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+     
+}
+
+/* Form title */
+form h2 {
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Form group styles */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+/* Input and select styles */
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #333;
+}
+
+/* Input focus effect */
+.form-group input:focus, 
+.form-group select:focus {
+    border-color: #0e015e;
+    outline: none;
+}
+
+/* Submit button styles */
+.submit-btn {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background-color: #0e015e;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.submit-btn:hover {
+    background-color: #444;
+}
+
+/* Form Popup */
+.popup-content {
+    background: #fff;
+    padding: 20px;
+    width: 400px;
+    height: 500px;
+    border-radius: 10px;
+    position: relative;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+}
+
+/* Close Button */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgb(71, 60, 125);
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+.popup {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.popup button {
+    margin: 10px;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+#confirmDelete {
+    background: red;
+    color: white;
+}
+
+#cancelDelete {
+    background: gray;
+    color: white;
+}/* Style the form group */
+
+/* Style the select dropdown */
+#filter-department {
+    width: 10%;
+    margin-left: 70em;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    cursor: pointer;
+    transition: border-color 0.3s;
+    border-color: #022a54;
+}
+/* Style the dropdown options */
+#filter-department option {
+    font-size: 16px;
+    padding: 5px;
+}
+
+/* Add hover effect */
+#filter-department:hover {
+    border-color: #555;
+}
+
+
+
+
+
