@@ -20,7 +20,7 @@ To run this project locally, follow the steps below:
 bash
 Copy
 Edit
-git clone https://github.com/your-username/employee-management-system.git
+git clone https://github.com/Hariyadav22/EmployeeManagement.git
 cd employee-management-system
 2. Open the project in your browser
 Simply open the index.html file in your browser.
